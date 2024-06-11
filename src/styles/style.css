@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&display=swap");
+:root {
+  --buttonColor: #0f172a;
+  --cellSizeLarge: 40px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lalezar", system-ui;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: rgb(22, 78, 99);
+  background: linear-gradient(
+    40deg,
+    rgba(22, 78, 99, 1) 16%,
+    rgba(40, 57, 142, 1) 92%,
+    rgba(46, 16, 101, 1) 100%
+  );
+}
+
+body * {
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: "Black Ops One", system-ui;
+  width: 100%;
+  font-size: 100px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgb(13, 150, 188);
+  background: linear-gradient(
+    0deg,
+    rgba(13, 150, 188, 1) 38%,
+    rgba(0, 0, 0, 1) 89%
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+main {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0 24px 0;
+}
+
+#direction {
+  margin: 12px;
+  font-size: 1.2rem;
+  padding: 2px 10px 0 10px;
+  background-color: transparent;
+  border: solid var(--buttonColor) 2px;
+  color: var(--buttonColor);
+  cursor: pointer;
+}
+
+.board-container {
+  background-color: #082f49;
+}
+
+.row {
+  display: flex;
+}
+.column {
+  width: var(--cellSizeLarge);
+  height: var(--cellSizeLarge);
+  border: solid #0d9488 1px;
+}
+
+.message {
+  font-size: 1.3rem;
+  margin-top: 16px;
+}

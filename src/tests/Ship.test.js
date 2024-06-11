@@ -1,4 +1,4 @@
-import Ship from "../Ship";
+import Ship from "../Ship.mjs";
 
 test("Ship can be hit", () => {
   const ship = new Ship("testShip", 3);
