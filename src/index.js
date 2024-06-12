@@ -9,4 +9,4 @@ import DOMController from "./DOMController.mjs";
 const ui = new DOMController();
 // Render the first page.
 
-ui.renderFirst();
+ui.renderShipPlacement();

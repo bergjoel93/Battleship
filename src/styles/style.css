@@ -80,10 +80,23 @@ main {
 .row {
   display: flex;
 }
-.column {
+
+#cell {
   width: var(--cellSizeLarge);
   height: var(--cellSizeLarge);
   border: solid #0d9488 1px;
+}
+
+.invalid {
+  background-color: #f87171;
+}
+
+.valid {
+  background-color: #0891b2;
+}
+
+.ship {
+  background-color: grey;
 }
 
 .message {

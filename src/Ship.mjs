@@ -3,9 +3,9 @@
  */
 
 class Ship {
-  constructor(name, length) {
+  constructor(name, size) {
     this.name = name;
-    this.length = length;
+    this.size = size;
     this.hitCount = 0;
     this.sunk = false;
   }
@@ -19,7 +19,7 @@ class Ship {
   }
 
   isSunk() {
-    return this.hitCount >= this.length;
+    return this.hitCount >= this.size;
   }
 }
 

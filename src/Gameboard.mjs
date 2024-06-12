@@ -1,6 +1,3 @@
-/**
- * Gameboard
- */
 import Ship from "./Ship.mjs";
 
 class Gameboard {
@@ -22,27 +19,48 @@ class Gameboard {
    * @returns {boolean} - Returns true if the ship was placed successfully, false otherwise.
    */
   placeShip(ship, x, y, direction) {
-    const length = ship.length;
+    if (!this.isValidPosition(ship, x, y, direction)) {
+      return false; // Invalid position, return false
+    }
+
+    const size = ship.size;
+    if (direction === "horizontal") {
+      for (let i = 0; i < size; i++) {
+        this.board[x][y + i] = ship; // Place the ship reference
+      }
+    } else if (direction === "vertical") {
+      for (let i = 0; i < size; i++) {
+        this.board[x + i][y] = ship; // Place the ship reference
+      }
+    }
+    this.ships.push(ship); // Add ship to ships array
+    return true; // Ship placed successfully
+  }
+
+  /**
+   * Checks if the coordinates for placing a ship are valid.
+   * @param {Ship} ship - The ship to place.
+   * @param {number} x - The starting x-coordinate.
+   * @param {number} y - The starting y-coordinate.
+   * @param {string} direction - The direction ('horizontal' or 'vertical').
+   * @returns {boolean} - Returns true if the position is valid, false otherwise.
+   */
+  isValidPosition(ship, x, y, direction) {
+    const length = ship.size;
     if (direction === "horizontal") {
       if (y + length > 10) return false; // Ship goes out of bounds
       for (let i = 0; i < length; i++) {
         if (this.board[x][y + i] !== null) return false; // Overlaps another ship
-      }
-      for (let i = 0; i < length; i++) {
-        this.board[x][y + i] = ship; // Place the ship reference
       }
     } else if (direction === "vertical") {
       if (x + length > 10) return false; // Ship goes out of bounds
       for (let i = 0; i < length; i++) {
         if (this.board[x + i][y] !== null) return false; // Overlaps another ship
       }
-      for (let i = 0; i < length; i++) {
-        this.board[x + i][y] = ship; // Place the ship reference
-      }
     }
-    this.ships.push(ship); // Add ships to ships array.
-    return true; // Ship placed successfully
+    return true; // Position is valid
   }
+
   /**
    * Takes a pair of coordinates, determines whether or not the attack hit a ship and sends their 'hit' function to the correct ship, or records the coordinates of the miss shot. If an attack is a hit on a ship then true is returned. Otherwise false.
    * @param {*} x - coordinate
@@ -86,7 +104,7 @@ class Gameboard {
     if (x >= 0 && x < 10 && y >= 0 && y < 10) {
       return this.board[x][y];
     } else {
-      throw Error(" The coordinates were out of bounds of the boad.");
+      throw Error("The coordinates were out of bounds of the board.");
     }
   }
 

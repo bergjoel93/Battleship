@@ -9,12 +9,14 @@ import Player from "./Player.mjs";
 export default class DOMController {
   constructor() {
     this.player = new Player(false); // user player
-    this.CPU = new Player(true);
+    this.computer = new Player(true);
+    this.playerGameboard = new Gameboard("Player");
+    this.computerGameboard = new Gameboard("Computer");
   }
   /**
    * Renders first phase. Includes Place Your Ships message, toggle button and gameboard for setup.
    */
-  renderFirst() {
+  renderShipPlacement() {
     const main = document.querySelector("main");
     main.innerHTML = ``; //  clear it out.
 
@@ -38,6 +40,45 @@ export default class DOMController {
     this.placeShips();
   }
 
+  placeShips = () => {
+    // TODO need to cycle through all ships for placement.
+    const ships = this.player.ships;
+    let direction = "horizontal";
+
+    // handle button
+    const button = document.querySelector("#direction");
+    button.addEventListener("click", () => {
+      direction = direction === "horizontal" ? "vertical" : "horizontal";
+    });
+
+    let cells = document.querySelectorAll("#cell");
+    cells.forEach((cell) => {
+      cell.addEventListener("mouseover", () => {
+        let x = Number(cell.dataset.x);
+        let y = Number(cell.dataset.y);
+        this.highlightCells(x, y, direction, ships[0]);
+      });
+      cell.addEventListener("mouseout", () => {
+        let x = Number(cell.dataset.x);
+        let y = Number(cell.dataset.y);
+        this.unhighlightCells();
+      });
+
+      cell.addEventListener("click", () => {
+        // If the cell is clicked do the following: check to make sure it's a valid spot. If it is, add ship to board. Then color cells on UI.
+        let x = Number(cell.dataset.x);
+        let y = Number(cell.dataset.y);
+        if (this.playerGameboard.isValidPosition(ships[0], x, y, direction)) {
+          this.playerGameboard.placeShip(ships[0], x, y, direction);
+          this.updateBoardShipPlacement(x, y, direction, ships[0]);
+          console.log("ship placed");
+          console.log("ship:", ships[0]);
+          console.log(this.playerGameboard.toString());
+        }
+      });
+    });
+  };
+
   drawBoard() {
     let boardContainer = document.createElement("div");
     boardContainer.classList.add("board-container");
@@ -50,10 +91,10 @@ export default class DOMController {
       // columns
       for (let j = 0; j < 10; j++) {
         let column = document.createElement("div");
-        column.classList.add("column");
-        column.setAttribute("x", i);
-        column.setAttribute("y", j);
-        column.setAttribute("id", `[${i},${j}]`);
+        column.classList.add("empty");
+        column.setAttribute("data-x", i);
+        column.setAttribute("data-y", j);
+        column.setAttribute("id", `cell`);
         row.appendChild(column);
       }
       boardContainer.appendChild(row);
@@ -61,50 +102,47 @@ export default class DOMController {
     return boardContainer;
   }
 
-  placeShips() {
-    let firstDone = false;
-    const shipSizes = [5, 4, 3, 3, 2];
-    let direction = "horizontal";
-
-    // handle button
-    const button = document.querySelector("#direction");
-    button.addEventListener("click", () => {
-      direction = direction === "horizontal" ? "vertical" : "horizontal";
-    });
-
-    let cells = document.querySelectorAll(".column");
-    cells.forEach((cell) => {
-      cell.addEventListener("mouseover", () => {
-        cell.style.backgroundColor = "#0891b2";
-        let x = Number(cell.getAttribute("x"));
-        let y = Number(cell.getAttribute("y"));
-        let start = [x, y];
-        this.highlightCells(start, "horizontal", 5);
-      });
-      cell.addEventListener("mouseout", () => {
-        cell.style.backgroundColor = "transparent";
-      });
-    });
+  updateBoardShipPlacement(x, y, direction, ship) {
+    // select cells where ship is at.
+    for (let i = 0; i < ship.size; i++) {
+      let cell;
+      if (direction === "horizontal") {
+        cell = document.querySelector(`[data-x="${x}"][data-y="${y + i}"]`);
+      } else {
+        cell = document.querySelector(`[data-x="${x + i}"][data-y="${y}"]`);
+      }
+      cell.className = "ship";
+    }
   }
 
-  highlightCells(start, direction, shipSize) {
-    //calculate the sizes.
-    let startX = start[0];
-    let startY = start[1];
-    let cells = [start];
-    if (direction === "horizontal") {
-      for (let i = 1; i < shipSize; i++) {
-        // check if it goes out of bounds
-        let nextCell = [(startX += 1), startY];
-        cells.push(nextCell);
+  highlightCells(x, y, direction, ship) {
+    for (let i = 0; i < ship.size; i++) {
+      let cell;
+      if (direction === "horizontal") {
+        cell = document.querySelector(`[data-x="${x}"][data-y="${y + i}"]`);
+      } else {
+        cell = document.querySelector(`[data-x="${x + i}"][data-y="${y}"]`);
       }
-      console.log(cells);
-      //iterate through cells and highlight selected.
-      cells.forEach((cell) => {
-        let highlight = document.getElementById(`#[${cell[0]},${cell[1]}]`);
-        highlight.style.backgroundColor = "#0891b2";
-      });
+      if (cell) {
+        if (cell.className !== "ship") {
+          if (!this.playerGameboard.isValidPosition(ship, x, y, direction)) {
+            cell.className = "empty"; //clears classlist
+            cell.classList.add("invalid");
+            ///cell.style.backgroundColor = "#f87171"; // red
+          } else {
+            cell.className = "empty"; //clears classlist
+            cell.classList.add("valid");
+            //cell.style.backgroundColor = "#0891b2"; //highlight
+          }
+        }
+      }
     }
+  }
+  unhighlightCells() {
+    let cells = document.querySelectorAll(".empty");
+    cells.forEach((cell) => {
+      cell.className = "empty";
+    });
   }
 
   //end
