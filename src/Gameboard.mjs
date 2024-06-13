@@ -133,7 +133,7 @@ class Gameboard {
     for (let i = 0; i < this.board.length; i++) {
       for (let j = 0; j < this.board[i].length; j++) {
         if (this.board[i][j] !== null && typeof this.board[i][j] === "object") {
-          string += `[${this.board[i][j].length}]`;
+          string += `[${this.board[i][j].size}]`;
         } else if (this.board[i][j] === "H" || this.board[i][j] === "M") {
           string += `[${this.board[i][j]}]`;
         } else {

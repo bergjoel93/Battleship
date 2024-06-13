@@ -1,6 +1,7 @@
 import Ship from "./Ship.mjs";
 import Gameboard from "./Gameboard.mjs";
 import Player from "./Player.mjs";
+import SetupComputerPlayer from "./SetupComputerPlayer.mjs";
 
 /**
  * This controls the DOM manipulation.
@@ -8,10 +9,10 @@ import Player from "./Player.mjs";
 
 export default class DOMController {
   constructor() {
-    this.player = new Player(false); // user player
-    this.computer = new Player(true);
+    this.player = new Player("Player"); // user player
     this.playerGameboard = new Gameboard("Player");
-    this.computerGameboard = new Gameboard("Computer");
+    this.currentShipIndex = 0;
+    this.setupComputerPlayer = new SetupComputerPlayer();
   }
   /**
    * Renders first phase. Includes Place Your Ships message, toggle button and gameboard for setup.
@@ -37,45 +38,62 @@ export default class DOMController {
     main.appendChild(gameboard);
     main.appendChild(message);
 
-    this.placeShips();
+    this.placeNextShip();
   }
 
-  placeShips = () => {
-    // TODO need to cycle through all ships for placement.
+  placeNextShip = () => {
     const ships = this.player.ships;
+    if (this.currentShipIndex >= ships.length) {
+      console.log("All ships have been placed.");
+      //initiate next phase.
+      this.setupComputerPlayer.renderLoadingPage(); // TODO not working because it's a recursive method.
+      return;
+    }
+
+    const ship = ships[this.currentShipIndex];
     let direction = "horizontal";
 
     // handle button
     const button = document.querySelector("#direction");
     button.addEventListener("click", () => {
       direction = direction === "horizontal" ? "vertical" : "horizontal";
+      button.innerHTML = direction.charAt(0).toUpperCase() + direction.slice(1);
     });
+
+    const handleMouseOver = (event) => {
+      let x = Number(event.target.dataset.x);
+      let y = Number(event.target.dataset.y);
+      this.highlightCells(x, y, direction, ship);
+    };
+
+    const handleMouseOut = (event) => {
+      this.unhighlightCells();
+    };
+
+    const handleClick = (event) => {
+      let x = Number(event.target.dataset.x);
+      let y = Number(event.target.dataset.y);
+      if (this.playerGameboard.isValidPosition(ship, x, y, direction)) {
+        this.playerGameboard.placeShip(ship, x, y, direction);
+        this.updateBoardShipPlacement(x, y, direction, ship);
+        //console.log("ship:", ship, `placed at [${x},${y}], ${direction}`);
+        //console.log(this.playerGameboard.toString());
+        this.currentShipIndex++;
+        this.placeNextShip();
+        // Remove event listeners
+        cells.forEach((cell) => {
+          cell.removeEventListener("mouseover", handleMouseOver);
+          cell.removeEventListener("mouseout", handleMouseOut);
+          cell.removeEventListener("click", handleClick);
+        });
+      }
+    };
 
     let cells = document.querySelectorAll("#cell");
     cells.forEach((cell) => {
-      cell.addEventListener("mouseover", () => {
-        let x = Number(cell.dataset.x);
-        let y = Number(cell.dataset.y);
-        this.highlightCells(x, y, direction, ships[0]);
-      });
-      cell.addEventListener("mouseout", () => {
-        let x = Number(cell.dataset.x);
-        let y = Number(cell.dataset.y);
-        this.unhighlightCells();
-      });
-
-      cell.addEventListener("click", () => {
-        // If the cell is clicked do the following: check to make sure it's a valid spot. If it is, add ship to board. Then color cells on UI.
-        let x = Number(cell.dataset.x);
-        let y = Number(cell.dataset.y);
-        if (this.playerGameboard.isValidPosition(ships[0], x, y, direction)) {
-          this.playerGameboard.placeShip(ships[0], x, y, direction);
-          this.updateBoardShipPlacement(x, y, direction, ships[0]);
-          console.log("ship placed");
-          console.log("ship:", ships[0]);
-          console.log(this.playerGameboard.toString());
-        }
-      });
+      cell.addEventListener("mouseover", handleMouseOver);
+      cell.addEventListener("mouseout", handleMouseOut);
+      cell.addEventListener("click", handleClick);
     });
   };
 

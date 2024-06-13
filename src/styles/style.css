@@ -103,3 +103,20 @@ main {
   font-size: 1.3rem;
   margin-top: 16px;
 }
+
+/* Loading Screen  */
+/* styles.css */
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.load {
+  opacity: 0;
+  animation: fadeInOut 3s ease-in-out;
+}

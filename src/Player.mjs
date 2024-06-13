@@ -2,9 +2,8 @@ import Gameboard from "./Gameboard.mjs";
 import Ship from "./Ship.mjs";
 
 export default class Player {
-  constructor(isCPU) {
-    this.isCPU = isCPU;
-    this.name = this.isCPU ? "Computer" : "Player";
+  constructor(name) {
+    this.name = name;
     this.gameboard = new Gameboard(this.name);
     this.ships = [
       new Ship("Carrier", 5),
