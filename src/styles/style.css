@@ -2,6 +2,8 @@
 :root {
   --buttonColor: #0f172a;
   --cellSizeLarge: 40px;
+  --cellSizeMedium: 35px;
+  --cellSizeSmall: 20px;
 }
 
 * {
@@ -119,4 +121,26 @@ main {
 .load {
   opacity: 0;
   animation: fadeInOut 3s ease-in-out;
+}
+
+/* Game Play UI */
+#cell-medium {
+  width: var(--cellSizeMedium);
+  height: var(--cellSizeMedium);
+  border: solid #0d9488 1px;
+}
+
+.clickable:hover {
+  background-color: #0d9488;
+  cursor: crosshair;
+}
+
+#gameContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.mainBoard,
+.userBoard {
 }

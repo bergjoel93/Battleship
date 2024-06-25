@@ -1,6 +1,9 @@
+import Gameboard from "./Gameboard.mjs";
+import Player from "./Player.mjs";
 /**
  * Renders a loading screen and setsup computer players board.
  */
+
 export default class SetupComputerPlayer {
   constructor() {
     this.computerGameboard = new Gameboard("Computer");

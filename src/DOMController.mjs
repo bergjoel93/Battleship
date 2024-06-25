@@ -43,10 +43,17 @@ export default class DOMController {
 
   placeNextShip = () => {
     const ships = this.player.ships;
+    // Once we reach the end up of the ships array (we placed all of the ships)
     if (this.currentShipIndex >= ships.length) {
       console.log("All ships have been placed.");
-      //initiate next phase.
-      this.setupComputerPlayer.renderLoadingPage(); // TODO not working because it's a recursive method.
+      // Show loading screen and then set up computer player
+      this.setupComputerPlayer.renderLoadingPage();
+      setTimeout(() => {
+        this.setupComputerPlayer.startSetup(() => {
+          console.log("Computer player setup complete.");
+          // Transition to the next game phase here, e.g., renderGamePhase();
+        });
+      }, 2000); // Delay for 1 second to show the loading screen
       return;
     }
 
