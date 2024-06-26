@@ -16,152 +16,172 @@ export default class PlayGame {
     this.handleGamePlay();
   }
 
-  // Now we need to handle game play.
-  //If a cell is clicked we get the x and y values. Then we compare them to see if we hit a ship or if we miss. If we hit a ship, then we add a new marker to the element. Maybe an icon image.
-  // After, the computer player randomly will select a spot on the grid. This spot is rememberd if it is a hit because then the computer will click one of the four adjacent spots. If it hit's two spots in a row then it will only select a spot in the y or x direction. If it makes a miss then this memmory is deleted.
+  /**
+   * Handles the game play. When the user clicks on the computer's board.
+   */
   handleGamePlay() {
     const cells = document.querySelectorAll(".clickable");
     cells.forEach((cell) => {
-      // if we click a cell what happens? It hits or misses a target.
       cell.addEventListener("click", () => {
         const x = Number(cell.dataset.x);
         const y = Number(cell.dataset.y);
-        //console.log(`Cell clicked:(${x}, ${y})`);
-        //console.log(this.usersMoves);
-        //console.log(this.isValidMove(x, y, this.usersMoves));
         if (this.isValidMove(x, y, this.usersMoves)) {
-          //console.log("valid move");
-          // check for hit.
           if (this.computer.gameboard.receiveAttack(x, y)) {
-            // update the grid
-            // inject material symbol.
-            cell.innerHTML = `<span id = "hit-marker" class="material-symbols-outlined">close</span>`;
+            cell.innerHTML = `<span id="hit-marker" class="material-symbols-outlined">close</span>`;
             cell.classList.add("ship");
           } else {
-            cell.innerHTML = `<span id = "miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
+            cell.innerHTML = `<span id="miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
           }
-          // add moves to userMoves.
           this.usersMoves.push({ x, y });
-          // now computer takes it's turn.
+          // Check if game is over after user's moves.
+          if (this.checkGameOver()) {
+            return;
+          }
+          // Computer takes it's turn now.
           this.computerAttacks();
         }
       });
     });
   }
-  // Responsible for handling attacks made by the computer after the user has attacked computer's grid.
+  /**
+   * Checks if the game has ended due to all ships of either player being sunk.
+   * @returns {boolean} - true or false
+   */
+  checkGameOver() {
+    if (this.user.gameboard.allShipsSunk()) {
+      this.displayEndGameMessage("Defeated");
+      console.log(this.user.gameboard.toString());
+      return true;
+    } else if (this.computer.gameboard.allShipsSunk()) {
+      this.displayEndGameMessage("You Win!");
+      console.log(this.computer.gameboard.toString());
+      return true;
+    }
+    return false;
+  }
+
+  displayEndGameMessage(message) {
+    const main = document.querySelector("main");
+    const endGameMessage = document.createElement("div");
+    endGameMessage.innerHTML = message;
+    main.appendChild(endGameMessage);
+  }
+
+  /**
+   * Handles the computer attacking the user. Called after user attacks computer.
+   */
   computerAttacks() {
     let x, y;
-
-    // check if there was a previously successfuly hit.
+    // check for a successful hit.
     if (this.successfulHit !== null) {
+      // if there is a successful hit previously coordinates are generated adjacent to previous move.
       const nextCoordinates = this.generateAdjacentMove(this.successfulHit);
       x = nextCoordinates.x;
       y = nextCoordinates.y;
-
-      if (this.user.gameboard.receiveAttack(x, y)) {
-        // Update the grid
-        cell.innerHTML = `<span id="hit-marker" class="material-symbols-outlined">close</span>`;
-        cell.classList.add("hit");
-        // how do we check if it's a horizontal or vertical?
-        // check the last coordinate in the computerMoves, if x is different it's horizontal. if y is different, vert.
-        if (
-          this.successfulHit.x !==
-          this.computerMoves[this.computerMoves.length - 1].x
-        ) {
-          this.successfulHit = { hit: true, x, y, direction: "horizontal" };
-        } else if (
-          this.successfulHit.y !==
-          this.computerMoves[this.computerMoves.length - 1].y
-        ) {
-          this.successfulHit = { hit: true, x, y, direction: "vertical" };
-        }
-      } else {
-        // If it's a miss from a previously successful hit, we want to indicate that somehow. Because then we know to simply hit the other side. The computer will continue this until the ship is sunk.
-        console.log("Computer misses.");
-        cell.innerHTML = `<span id="miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
-        cell.classList.add("miss");
-        //this.successfulHit = { hit: false, x, y, direction: null };
-        this.successfulHit = null;
-      }
     } else {
-      // Generate x and y until a valid move is found
+      //if no previously successful move, then we generate random VALID coordinates
       do {
         x = this.generateXAndY();
         y = this.generateXAndY();
       } while (!this.isValidMove(x, y, this.computerMoves));
-      console.log(`computer attemps hit at (${x},${y})`);
-      // Check for hit or miss and update the board
-      let cell = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
-      if (this.user.gameboard.receiveAttack(x, y)) {
-        console.log("Computer hits user's ship.");
-        // Update the grid
-        cell.innerHTML = `<span id="hit-marker" class="material-symbols-outlined">close</span>`;
-        cell.classList.add("hit");
-        // remember last hit location to determine next hit.
-        this.successfulHit = { hit: true, x, y, direction: null };
-      } else {
-        console.log("Computer misses.");
-        cell.innerHTML = `<span id="miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
-        cell.classList.add("miss");
-        // nullify successfulHit
-        this.successfulHit = null;
-      }
     }
 
-    // Add move to computer moves
-    this.computerMoves.push({ x, y });
+    // once coodinates are valid and generated, then we select cell on board.
+    // it's selecting the first board since that's the one we want anyways.
+    const cell = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+    if (this.user.gameboard.receiveAttack(x, y)) {
+      // check if the attack is a hit.
+      cell.innerHTML = `<span id="hit-marker" class="material-symbols-outlined">close</span>`;
+      cell.classList.add("hit");
+      this.updateSuccessfulHit(x, y); // update successful hit.
+    } else {
+      // else just add a miss marker.
+      cell.innerHTML = `<span id="miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
+      cell.classList.add("miss");
+      this.successfulHit = null;
+    }
+
+    this.computerMoves.push({ x, y }); // add the coordinates to moves list.
+
+    // Check if game is over after computer's move.
+    if (this.checkGameOver()) {
+      return;
+    }
+  }
+
+  updateSuccessfulHit(x, y) {
+    const lastMove = this.computerMoves[this.computerMoves.length - 1]; // find last move
+    if (this.successfulHit) {
+      // check if last move was a successful hit.
+      // if the last move's x matches the current hit's x, we know the direction is horizontal. Vice versa for vertical.
+      if (this.successfulHit.x !== lastMove.x) {
+        this.successfulHit = { hit: true, x, y, direction: "horizontal" };
+      } else if (this.successfulHit.y !== lastMove.y) {
+        this.successfulHit = { hit: true, x, y, direction: "vertical" };
+      }
+    } else {
+      this.successfulHit = { hit: true, x, y, direction: null };
+    }
   }
 
   /**
-   *
-   * @param {Object} successfulHit {"hit":true or false, x, y, direction}
-   * @returns {Object} next x and y coordinates.
+   * Generate adjacent move coordinates based on a previous successful hit.
+   * @param {Object} successfulHit - { hit: true, x, y, direction }
+   * @returns {Object} - { x, y } - Next move coordinates
    */
   generateAdjacentMove(successfulHit) {
     let x, y;
-    // check if there is a direction.
-    if (successfulHit.direction === "horizontal") {
-      // randomly pick left or right side.
-      let side = Math.round(Math.random()); // generates 1 or 0.
-      x = side === 1 ? successfulHit.x + 1 : successfulHit.x - 1;
-      y = successfulHit.y;
-    } else if (successfulHit.direction === "vertical") {
-      // randomly pick left or right side.
-      let side = Math.round(Math.random()); // generates 1 or 0.
-      y = side === 1 ? successfulHit.y + 1 : successfulHit.y - 1;
-      x = successfulHit.x;
-    } else {
-      // generates a random number between 1 through 4 because there are four different choices.
-      let choice = Math.floor(Math.random() * 4) + 1;
+    const maxAttempts = 10; // Max attempts to avoid infinite recursion
+    let attempts = 0;
 
-      switch (choice) {
-        case 1:
-          x = successfulHit.x - 1;
-          y = successfulHit.y;
-          break;
-        case 2:
-          x = successfulHit.x;
-          y = successfulHit.y - 1;
-          break;
-        case 3:
-          x = successfulHit.x + 1;
-          y = successfulHit.y;
-          break;
-        case 4:
-          x = successfulHit.x;
-          y = successfulHit.y + 1;
-          break;
+    while (attempts < maxAttempts) {
+      // check which direction we want to generate coordiantes for.
+      if (successfulHit.direction === "horizontal") {
+        const side = Math.round(Math.random()); // generate random side. 0 or 1.
+        x = side === 1 ? successfulHit.x + 1 : successfulHit.x - 1;
+        y = successfulHit.y;
+      } else if (successfulHit.direction === "vertical") {
+        const side = Math.round(Math.random());
+        y = side === 1 ? successfulHit.y + 1 : successfulHit.y - 1;
+        x = successfulHit.x;
+      } else {
+        // if there's no direction then we generate 1 of 4 adjacent coordinates.
+        const choice = Math.floor(Math.random() * 4) + 1;
+        switch (choice) {
+          case 1:
+            x = successfulHit.x - 1;
+            y = successfulHit.y;
+            break;
+          case 2:
+            x = successfulHit.x;
+            y = successfulHit.y - 1;
+            break;
+          case 3:
+            x = successfulHit.x + 1;
+            y = successfulHit.y;
+            break;
+          case 4:
+            x = successfulHit.x;
+            y = successfulHit.y + 1;
+            break;
+        }
       }
+
+      if (this.isValidMove(x, y, this.computerMoves)) {
+        return { x, y };
+      }
+      attempts++;
     }
 
-    if (this.isValidMove(x, y, this.computerMoves)) {
-      return { x, y };
-    } else {
-      this.generateAdjacentMove(successfulHit);
-    }
+    // Fallback: If all adjacent moves are invalid, pick a random move
+    do {
+      x = this.generateXAndY();
+      y = this.generateXAndY();
+    } while (!this.isValidMove(x, y, this.computerMoves));
+
+    return { x, y };
   }
 
-  // Function to check if the move has been attempted before and if the coordinates are within bounds
   isValidMove(x, y, movesArray) {
     if (x < 0 || x > 9 || y < 0 || y > 9) {
       return false;
@@ -171,35 +191,32 @@ export default class PlayGame {
 
   renderGame() {
     const main = document.querySelector("main");
-    main.innerHTML = ""; // clear out main.
+    main.innerHTML = "";
 
     const gameContainer = document.createElement("div");
     gameContainer.setAttribute("id", "gameContainer");
 
     this.mainBoard.className = "mainBoard";
-
     this.userBoard.className = "userBoard";
+
     gameContainer.appendChild(this.mainBoard);
     gameContainer.appendChild(this.userBoard);
     main.appendChild(gameContainer);
   }
 
   drawBoard(player) {
-    let boardContainer = document.createElement("div");
+    const boardContainer = document.createElement("div");
     boardContainer.classList.add("board-container");
 
-    let backEndBoard = player.gameboard.board;
-    //console.log(backEndBoard);
-    let name = player.name;
+    const backEndBoard = player.gameboard.board;
+    const name = player.name;
 
-    // first loop creates the rows.
     for (let i = 0; i < 10; i++) {
-      let row = document.createElement("div");
+      const row = document.createElement("div");
       row.classList.add("row");
 
-      // columns
       for (let j = 0; j < 10; j++) {
-        let column = document.createElement("div");
+        const column = document.createElement("div");
         column.classList.add("empty");
         column.setAttribute("data-x", i);
         column.setAttribute("data-y", j);
@@ -207,11 +224,8 @@ export default class PlayGame {
         if (name === "computer") {
           column.className = "clickable";
         }
-        if (name === "user") {
-          //check if theres a ship in each cell.
-          if (backEndBoard[i][j]) {
-            column.className = "ship";
-          }
+        if (name === "user" && backEndBoard[i][j]) {
+          column.className = "ship";
         }
 
         row.appendChild(column);
@@ -221,10 +235,6 @@ export default class PlayGame {
     return boardContainer;
   }
 
-  /**
-   * Used for generating a random x and y coordinate.
-   * @returns {number} between 0 and 9.
-   */
   generateXAndY() {
     return Math.floor(Math.random() * 10);
   }

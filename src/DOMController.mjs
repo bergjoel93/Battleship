@@ -1,4 +1,3 @@
-import Ship from "./Ship.mjs";
 import Gameboard from "./Gameboard.mjs";
 import Player from "./Player.mjs";
 import SetupComputerPlayer from "./SetupComputerPlayer.mjs";

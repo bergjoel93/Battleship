@@ -23,7 +23,7 @@ export default class FakeGame {
     } else {
       for (let i = 0; i < this.player.ships.length; i++) {
         this.player.gameboard.placeShip(
-          this.computer.ships[i],
+          this.player.ships[i],
           i,
           0,
           "horizontal"

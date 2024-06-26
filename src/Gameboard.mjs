@@ -69,14 +69,23 @@ class Gameboard {
    */
   receiveAttack(x, y) {
     if (this.find(x, y) !== null) {
+      //check gameboard. If null then no ship exists.
       // Check if it's a hit or miss.
-      let hitShip = this.find(x, y);
+      let hitShip = this.find(x, y); // get's ship hit.
       console.log(
-        "Hit " + hitShip.name + " at coordinates (" + x + ", " + y + ")"
+        this.name +
+          "'s " +
+          hitShip.name +
+          " hit at coordinates (" +
+          x +
+          ", " +
+          y +
+          ")"
       );
       hitShip.hit();
       this.board[x][y] = "H"; // Add H for hit to board.
 
+      // check if all the enemy ships were sunk.
       if (this.allShipsSunk()) {
         console.log(`All of ${this.name}'s ships have been sunk. Game Over.`);
         return true;
@@ -84,11 +93,11 @@ class Gameboard {
 
       if (hitShip.isSunk()) {
         // Check if ship is sunk.
-        console.log("The " + hitShip.name + " has been sunk");
+        console.log(`${this.name}'s ${hitShip.name} has sunk`);
       }
       return true;
     } else {
-      console.log("Miss");
+      console.log(`${this.name} didn't get hit`);
       this.board[x][y] = "M"; // fills the board with M for miss.
       return false;
     }
