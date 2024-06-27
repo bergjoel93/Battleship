@@ -3,10 +3,12 @@
  */
 import FakeGame from "./mockInstance.mjs";
 export default class PlayGame {
-  constructor() {
-    this.fakeGame = new FakeGame();
-    this.user = this.fakeGame.player;
-    this.computer = this.fakeGame.computer;
+  constructor(player1, player2) {
+    //this.fakeGame = new FakeGame();
+    //this.user = this.fakeGame.player;
+    //this.computer = this.fakeGame.computer;
+    this.user = player1;
+    this.computer = player2;
     this.mainBoard = this.drawBoard(this.user);
     this.userBoard = this.drawBoard(this.computer);
     this.usersMoves = []; // keeps track of user's moves.

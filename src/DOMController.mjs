@@ -1,6 +1,7 @@
 import Gameboard from "./Gameboard.mjs";
 import Player from "./Player.mjs";
 import SetupComputerPlayer from "./SetupComputerPlayer.mjs";
+import PlayGame from "./PlayGame.mjs";
 
 /**
  * This controls the DOM manipulation.
@@ -40,6 +41,10 @@ export default class DOMController {
     this.placeNextShip();
   }
 
+  /**
+   * Allows user to place ships on the board by cycling through the player's ship list. Handles those clicking and hovering events.
+   * @returns
+   */
   placeNextShip = () => {
     const ships = this.player.ships;
     // Once we reach the end up of the ships array (we placed all of the ships)
@@ -51,8 +56,13 @@ export default class DOMController {
         this.setupComputerPlayer.startSetup(() => {
           console.log("Computer player setup complete.");
           // Transition to the next game phase here, e.g., renderGamePhase();
+          const playGame = new PlayGame(
+            this.player,
+            this.setupComputerPlayer.computer
+          );
         });
-      }, 2000); // Delay for 1 second to show the loading screen
+      }, 1000); // Delay for 1 second to show the loading screen
+
       return;
     }
 
@@ -102,7 +112,10 @@ export default class DOMController {
       cell.addEventListener("click", handleClick);
     });
   };
-
+  /**
+   * Draws the board, a 10x10 grid.
+   * @returns
+   */
   drawBoard() {
     let boardContainer = document.createElement("div");
     boardContainer.classList.add("board-container");
@@ -125,7 +138,13 @@ export default class DOMController {
     }
     return boardContainer;
   }
-
+  /**
+   * When a ship is placed, call this function and it will update the data attributes in the grid cell so that styling will indicate a ship in it's place.
+   * @param {number} x
+   * @param {number} y
+   * @param {String} direction
+   * @param {Object} ship
+   */
   updateBoardShipPlacement(x, y, direction, ship) {
     // select cells where ship is at.
     for (let i = 0; i < ship.size; i++) {
@@ -138,7 +157,13 @@ export default class DOMController {
       cell.className = "ship";
     }
   }
-
+  /**
+   * Highlights the cells when you hover over the square according to the ship being placed. Will highlight red if it's an invalid spot.
+   * @param {number} x
+   * @param {number} y
+   * @param {String} direction
+   * @param {Object} ship
+   */
   highlightCells(x, y, direction, ship) {
     for (let i = 0; i < ship.size; i++) {
       let cell;
@@ -162,6 +187,9 @@ export default class DOMController {
       }
     }
   }
+  /**
+   * unhighlights cells that are empty when the mouse event moves away from cell.
+   */
   unhighlightCells() {
     let cells = document.querySelectorAll(".empty");
     cells.forEach((cell) => {
