@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&display=swap);"]);
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&family=Press+Start+2P&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `:root {
   --buttonColor: #0f172a;
@@ -137,6 +137,9 @@ main {
   width: var(--cellSizeMedium);
   height: var(--cellSizeMedium);
   border: solid #0d9488 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .clickable:hover {
@@ -149,7 +152,56 @@ main {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AACA;EACE,sBAAA;EACA,qBAAA;EACA,sBAAA;EACA,qBAAA;AACF;;AAEA;EACE,SAAA;EACA,UAAA;EACA,sBAAA;EACA,iCAAA;AACF;;AAEA;;EAEE,YAAA;EACA,WAAA;AACF;;AAEA;EACE,2BAAA;EACA,oGAAA;AACF;;AAUA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;AAPF;;AAUA;EACE,uCAAA;EACA,WAAA;EACA,gBAAA;EACA,iBAAA;EACA,yBAAA;EACA,6BAAA;EACA,0EAAA;EAKA,6BAAA;EACA,kBAAA;EACA,kBAAA;EACA,mBAAA;EACA,2CAAA;AAXF;;AAcA;EACE,UAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,qBAAA;AAXF;;AAcA;EACE,YAAA;EACA,iBAAA;EACA,wBAAA;EACA,6BAAA;EACA,oCAAA;EACA,yBAAA;EACA,eAAA;AAXF;;AAcA;EACE,yBAAA;AAXF;;AAcA;EACE,aAAA;AAXF;;AAcA;EACE,2BAAA;EACA,4BAAA;EACA,yBAAA;AAXF;;AAcA;EACE,yBAAA;AAXF;;AAcA;EACE,yBAAA;AAXF;;AAcA;EACE,sBAAA;AAXF;;AAcA;EACE,iBAAA;EACA,gBAAA;AAXF;;AAcA,oBAAA;AACA,eAAA;AACA;EACE;IAEE,UAAA;EAZF;EAcA;IACE,UAAA;EAZF;AACF;AAeA;EACE,UAAA;EACA,mCAAA;AAbF;;AAgBA,iBAAA;AACA;EACE,4BAAA;EACA,6BAAA;EACA,yBAAA;AAbF;;AAgBA;EACE,yBAAA;EACA,iBAAA;AAbF;;AAgBA;EACE,aAAA;EACA,WAAA;EACA,mBAAA;EACA,8BAAA;AAbF","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&display=swap\");\n:root {\n  --buttonColor: #0f172a;\n  --cellSizeLarge: 40px;\n  --cellSizeMedium: 35px;\n  --cellSizeSmall: 20px;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: \"Lalezar\", system-ui;\n}\n\nhtml,\nbody {\n  height: 100%;\n  width: 100%;\n}\n\nbody {\n  background: rgb(22, 78, 99);\n  background: linear-gradient(\n    40deg,\n    rgba(22, 78, 99, 1) 16%,\n    rgba(40, 57, 142, 1) 92%,\n    rgba(46, 16, 101, 1) 100%\n  );\n}\n\nbody * {\n}\n\nbody {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.title {\n  font-family: \"Black Ops One\", system-ui;\n  width: 100%;\n  font-size: 100px;\n  font-weight: bold;\n  text-transform: uppercase;\n  background: rgb(13, 150, 188);\n  background: linear-gradient(\n    0deg,\n    rgba(13, 150, 188, 1) 38%,\n    rgba(0, 0, 0, 1) 89%\n  );\n  -webkit-background-clip: text;\n  color: transparent;\n  text-align: center;\n  letter-spacing: 2px;\n  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);\n}\n\nmain {\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin: 24px 0 24px 0;\n}\n\n#direction {\n  margin: 12px;\n  font-size: 1.2rem;\n  padding: 2px 10px 0 10px;\n  background-color: transparent;\n  border: solid var(--buttonColor) 2px;\n  color: var(--buttonColor);\n  cursor: pointer;\n}\n\n.board-container {\n  background-color: #082f49;\n}\n\n.row {\n  display: flex;\n}\n\n#cell {\n  width: var(--cellSizeLarge);\n  height: var(--cellSizeLarge);\n  border: solid #0d9488 1px;\n}\n\n.invalid {\n  background-color: #f87171;\n}\n\n.valid {\n  background-color: #0891b2;\n}\n\n.ship {\n  background-color: grey;\n}\n\n.message {\n  font-size: 1.3rem;\n  margin-top: 16px;\n}\n\n/* Loading Screen  */\n/* styles.css */\n@keyframes fadeInOut {\n  0%,\n  100% {\n    opacity: 0;\n  }\n  50% {\n    opacity: 1;\n  }\n}\n\n.load {\n  opacity: 0;\n  animation: fadeInOut 3s ease-in-out;\n}\n\n/* Game Play UI */\n#cell-medium {\n  width: var(--cellSizeMedium);\n  height: var(--cellSizeMedium);\n  border: solid #0d9488 1px;\n}\n\n.clickable:hover {\n  background-color: #0d9488;\n  cursor: crosshair;\n}\n\n#gameContainer {\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-between;\n}\n.mainBoard,\n.userBoard {\n}\n"],"sourceRoot":""}]);
+}
+
+.mainBoard,
+.userBoard {
+  background-color: #082f49;
+}
+
+#hit-marker {
+  color: red;
+  font-size: 2.3rem;
+}
+
+#miss-marker {
+  color: #0891b2;
+  font-size: 2.3rem;
+}
+
+.end-game-message {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Events log */
+#log-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+
+#log {
+  background-color: black;
+  color: rgb(11, 237, 22);
+  width: 80%;
+  height: 150px;
+  border: ridge gray 4px;
+  padding: 8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#log * {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  font-weight: 100;
+}`, "",{"version":3,"sources":["webpack://./src/styles/style.css"],"names":[],"mappings":"AACA;EACE,sBAAA;EACA,qBAAA;EACA,sBAAA;EACA,qBAAA;AACF;;AAEA;EACE,SAAA;EACA,UAAA;EACA,sBAAA;EACA,iCAAA;AACF;;AAEA;;EAEE,YAAA;EACA,WAAA;AACF;;AAEA;EACE,2BAAA;EACA,oGAAA;AACF;;AAUA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;AAPF;;AAUA;EACE,uCAAA;EACA,WAAA;EACA,gBAAA;EACA,iBAAA;EACA,yBAAA;EACA,6BAAA;EACA,0EAAA;EAKA,6BAAA;EACA,kBAAA;EACA,kBAAA;EACA,mBAAA;EACA,2CAAA;AAXF;;AAcA;EACE,UAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,qBAAA;AAXF;;AAcA;EACE,YAAA;EACA,iBAAA;EACA,wBAAA;EACA,6BAAA;EACA,oCAAA;EACA,yBAAA;EACA,eAAA;AAXF;;AAcA;EACE,yBAAA;AAXF;;AAcA;EACE,aAAA;AAXF;;AAcA;EACE,2BAAA;EACA,4BAAA;EACA,yBAAA;AAXF;;AAcA;EACE,yBAAA;AAXF;;AAcA;EACE,yBAAA;AAXF;;AAcA;EACE,sBAAA;AAXF;;AAcA;EACE,iBAAA;EACA,gBAAA;AAXF;;AAcA,oBAAA;AACA,eAAA;AACA;EACE;IAEE,UAAA;EAZF;EAcA;IACE,UAAA;EAZF;AACF;AAeA;EACE,UAAA;EACA,mCAAA;AAbF;;AAgBA,iBAAA;AACA;EACE,4BAAA;EACA,6BAAA;EACA,yBAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;AAbF;;AAgBA;EACE,yBAAA;EACA,iBAAA;AAbF;;AAgBA;EACE,aAAA;EACA,WAAA;EACA,mBAAA;EACA,8BAAA;AAbF;;AAeA;;EAEE,yBAAA;AAZF;;AAeA;EACE,UAAA;EACA,iBAAA;AAZF;;AAcA;EACE,cAAA;EACA,iBAAA;AAXF;;AAcA;EACE,eAAA;EACA,YAAA;EACA,kBAAA;EACA,gBAAA;AAXF;;AAcA,eAAA;AACA;EACE,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EAEA,gBAAA;AAZF;;AAeA;EACE,uBAAA;EACA,uBAAA;EACA,UAAA;EACA,aAAA;EACA,sBAAA;EACA,YAAA;EACA,gBAAA;EACA,aAAA;EACA,sBAAA;AAZF;;AAcA;EACE,8CAAA;EACA,iBAAA;EACA,gBAAA;AAXF","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&family=Press+Start+2P&display=swap\");\n:root {\n  --buttonColor: #0f172a;\n  --cellSizeLarge: 40px;\n  --cellSizeMedium: 35px;\n  --cellSizeSmall: 20px;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: \"Lalezar\", system-ui;\n}\n\nhtml,\nbody {\n  height: 100%;\n  width: 100%;\n}\n\nbody {\n  background: rgb(22, 78, 99);\n  background: linear-gradient(\n    40deg,\n    rgba(22, 78, 99, 1) 16%,\n    rgba(40, 57, 142, 1) 92%,\n    rgba(46, 16, 101, 1) 100%\n  );\n}\n\nbody * {\n}\n\nbody {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.title {\n  font-family: \"Black Ops One\", system-ui;\n  width: 100%;\n  font-size: 100px;\n  font-weight: bold;\n  text-transform: uppercase;\n  background: rgb(13, 150, 188);\n  background: linear-gradient(\n    0deg,\n    rgba(13, 150, 188, 1) 38%,\n    rgba(0, 0, 0, 1) 89%\n  );\n  -webkit-background-clip: text;\n  color: transparent;\n  text-align: center;\n  letter-spacing: 2px;\n  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);\n}\n\nmain {\n  width: 80%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin: 24px 0 24px 0;\n}\n\n#direction {\n  margin: 12px;\n  font-size: 1.2rem;\n  padding: 2px 10px 0 10px;\n  background-color: transparent;\n  border: solid var(--buttonColor) 2px;\n  color: var(--buttonColor);\n  cursor: pointer;\n}\n\n.board-container {\n  background-color: #082f49;\n}\n\n.row {\n  display: flex;\n}\n\n#cell {\n  width: var(--cellSizeLarge);\n  height: var(--cellSizeLarge);\n  border: solid #0d9488 1px;\n}\n\n.invalid {\n  background-color: #f87171;\n}\n\n.valid {\n  background-color: #0891b2;\n}\n\n.ship {\n  background-color: grey;\n}\n\n.message {\n  font-size: 1.3rem;\n  margin-top: 16px;\n}\n\n/* Loading Screen  */\n/* styles.css */\n@keyframes fadeInOut {\n  0%,\n  100% {\n    opacity: 0;\n  }\n  50% {\n    opacity: 1;\n  }\n}\n\n.load {\n  opacity: 0;\n  animation: fadeInOut 3s ease-in-out;\n}\n\n/* Game Play UI */\n#cell-medium {\n  width: var(--cellSizeMedium);\n  height: var(--cellSizeMedium);\n  border: solid #0d9488 1px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.clickable:hover {\n  background-color: #0d9488;\n  cursor: crosshair;\n}\n\n#gameContainer {\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-between;\n}\n.mainBoard,\n.userBoard {\n  background-color: #082f49;\n}\n\n#hit-marker {\n  color: red;\n  font-size: 2.3rem;\n}\n#miss-marker {\n  color: #0891b2;\n  font-size: 2.3rem;\n}\n\n.end-game-message {\n  font-size: 2rem;\n  color: white;\n  text-align: center;\n  margin-top: 20px;\n}\n\n/* Events log */\n#log-container {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n\n  margin-top: 24px;\n}\n\n#log {\n  background-color: black;\n  color: rgb(11, 237, 22);\n  width: 80%;\n  height: 150px;\n  border: ridge gray 4px;\n  padding: 8px;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n}\n#log * {\n  font-family: \"Courier New\", Courier, monospace;\n  font-size: 0.8rem;\n  font-weight: 100;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -596,126 +648,471 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/DOMController.mjs":
-/*!*******************************!*\
-  !*** ./src/DOMController.mjs ***!
-  \*******************************/
+/***/ "./src/DomManipulation/Log.mjs":
+/*!*************************************!*\
+  !*** ./src/DomManipulation/Log.mjs ***!
+  \*************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ DOMController)
+/* harmony export */   "default": () => (/* binding */ Log)
 /* harmony export */ });
-/* harmony import */ var _Ship_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Ship.mjs */ "./src/Ship.mjs");
-/* harmony import */ var _Gameboard_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Gameboard.mjs */ "./src/Gameboard.mjs");
-/* harmony import */ var _Player_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Player.mjs */ "./src/Player.mjs");
-/* harmony import */ var _SetupComputerPlayer_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SetupComputerPlayer.mjs */ "./src/SetupComputerPlayer.mjs");
+/**
+ * This is a retro looking log monitor that details the moves and events that happen when playing battleship. This module is responsible for rendering and updating the events log when it's initialized in PlayGame.mjs
+ */
 
+class Log {
+  constructor() {}
+
+  addMessage(newMessage) {
+    const message = document.createElement("span");
+    message.id = "message";
+    message.innerHTML = `@Battlship % ${newMessage}`;
+    const log = document.querySelector("#log");
+    log.appendChild(message);
+    this.scrollToBottom(); // Ensure the log scrolls to the bottom
+  }
+
+  render() {
+    const main = document.querySelector("main");
+
+    const container = document.createElement("div");
+    container.id = "log-container";
+
+    const log = document.createElement("div");
+    log.id = "log";
+    container.appendChild(log);
+    main.appendChild(container);
+  }
+
+  scrollToBottom() {
+    const logContainer = document.querySelector("#log");
+    logContainer.scrollTop = logContainer.scrollHeight;
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/DomManipulation/PlayGame.mjs":
+/*!******************************************!*\
+  !*** ./src/DomManipulation/PlayGame.mjs ***!
+  \******************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PlayGame)
+/* harmony export */ });
+/* harmony import */ var _Log_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Log.mjs */ "./src/DomManipulation/Log.mjs");
+
+class PlayGame {
+  constructor(player1, player2) {
+    //this.fakeGame = new FakeGame();
+    //this.user = this.fakeGame.player;
+    //this.computer = this.fakeGame.computer;
+    this.user = player1;
+    this.computer = player2;
+    this.userBoard = this.drawBoard(this.user);
+    this.computerBoard = this.drawBoard(this.computer);
+    this.usersMoves = []; // keeps track of user's moves.
+    this.computerMoves = [];
+    this.successfulHit = null;
+    this.renderGame();
+    this.handleGamePlay();
+    this.log = new _Log_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this.log.render();
+  }
+
+  /**
+   * Handles the game play. When the user clicks on the computer's board.
+   */
+  handleGamePlay() {
+    const cells = document.querySelectorAll(".clickable");
+    cells.forEach((cell) => {
+      cell.addEventListener("click", () => {
+        const x = Number(cell.dataset.x);
+        const y = Number(cell.dataset.y);
+        if (this.isValidMove(x, y, this.usersMoves)) {
+          if (this.computer.gameboard.receiveAttack(x, y)) {
+            cell.innerHTML = `<span id="hit-marker" class="material-symbols-outlined">close</span>`;
+            cell.classList.add("ship");
+          } else {
+            cell.innerHTML = `<span id="miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
+          }
+          this.usersMoves.push({ x, y });
+          // Check if game is over after user's moves.
+          if (this.checkGameOver()) {
+            return;
+          }
+          // Computer takes it's turn now.
+          this.computerAttacks();
+        }
+      });
+    });
+  }
+  /**
+   * Checks if the game has ended due to all ships of either player being sunk.
+   * @returns {boolean} - true or false
+   */
+  checkGameOver() {
+    if (this.user.gameboard.allShipsSunk()) {
+      this.displayEndGameMessage("Defeated");
+      console.log(this.user.gameboard.toString());
+      return true;
+    } else if (this.computer.gameboard.allShipsSunk()) {
+      this.displayEndGameMessage("You Win!");
+      console.log(this.computer.gameboard.toString());
+      return true;
+    }
+    return false;
+  }
+
+  displayEndGameMessage(message) {
+    const main = document.querySelector("main");
+    const endGameMessage = document.createElement("div");
+    endGameMessage.innerHTML = message;
+    main.appendChild(endGameMessage);
+  }
+
+  /**
+   * Handles the computer attacking the user. Called after user attacks computer.
+   */
+  computerAttacks() {
+    let x, y;
+    // check for a successful hit.
+    if (this.successfulHit !== null) {
+      // if there is a successful hit previously coordinates are generated adjacent to previous move.
+      const nextCoordinates = this.generateAdjacentMove(this.successfulHit);
+      x = nextCoordinates.x;
+      y = nextCoordinates.y;
+    } else {
+      //if no previously successful move, then we generate random VALID coordinates
+      do {
+        x = this.generateXAndY();
+        y = this.generateXAndY();
+      } while (!this.isValidMove(x, y, this.computerMoves));
+    }
+
+    // once coodinates are valid and generated, then we select cell on board.
+    // it's selecting the first board since that's the one we want anyways.
+    const cell = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+    if (this.user.gameboard.receiveAttack(x, y)) {
+      // check if the attack is a hit.
+      cell.innerHTML = `<span id="hit-marker" class="material-symbols-outlined">close</span>`;
+      cell.classList.add("hit");
+      this.updateSuccessfulHit(x, y); // update successful hit.
+    } else {
+      // else just add a miss marker.
+      cell.innerHTML = `<span id="miss-marker" class="material-symbols-outlined">radio_button_checked</span>`;
+      cell.classList.add("miss");
+      this.successfulHit = null;
+    }
+
+    this.computerMoves.push({ x, y }); // add the coordinates to moves list.
+
+    // Check if game is over after computer's move.
+    if (this.checkGameOver()) {
+      return;
+    }
+  }
+
+  updateSuccessfulHit(x, y) {
+    const lastMove = this.computerMoves[this.computerMoves.length - 1]; // find last move
+    if (this.successfulHit) {
+      // check if last move was a successful hit.
+      // if the last move's x matches the current hit's x, we know the direction is horizontal. Vice versa for vertical.
+      if (this.successfulHit.x !== lastMove.x) {
+        this.successfulHit = { hit: true, x, y, direction: "horizontal" };
+      } else if (this.successfulHit.y !== lastMove.y) {
+        this.successfulHit = { hit: true, x, y, direction: "vertical" };
+      }
+    } else {
+      this.successfulHit = { hit: true, x, y, direction: null };
+    }
+  }
+
+  /**
+   * Generate adjacent move coordinates based on a previous successful hit.
+   * @param {Object} successfulHit - { hit: true, x, y, direction }
+   * @returns {Object} - { x, y } - Next move coordinates
+   */
+  generateAdjacentMove(successfulHit) {
+    let x, y;
+    const maxAttempts = 10; // Max attempts to avoid infinite recursion
+    let attempts = 0;
+
+    while (attempts < maxAttempts) {
+      // check which direction we want to generate coordiantes for.
+      if (successfulHit.direction === "horizontal") {
+        const side = Math.round(Math.random()); // generate random side. 0 or 1.
+        x = side === 1 ? successfulHit.x + 1 : successfulHit.x - 1;
+        y = successfulHit.y;
+      } else if (successfulHit.direction === "vertical") {
+        const side = Math.round(Math.random());
+        y = side === 1 ? successfulHit.y + 1 : successfulHit.y - 1;
+        x = successfulHit.x;
+      } else {
+        // if there's no direction then we generate 1 of 4 adjacent coordinates.
+        const choice = Math.floor(Math.random() * 4) + 1;
+        switch (choice) {
+          case 1:
+            x = successfulHit.x - 1;
+            y = successfulHit.y;
+            break;
+          case 2:
+            x = successfulHit.x;
+            y = successfulHit.y - 1;
+            break;
+          case 3:
+            x = successfulHit.x + 1;
+            y = successfulHit.y;
+            break;
+          case 4:
+            x = successfulHit.x;
+            y = successfulHit.y + 1;
+            break;
+        }
+      }
+
+      if (this.isValidMove(x, y, this.computerMoves)) {
+        return { x, y };
+      }
+      attempts++;
+    }
+
+    // Fallback: If all adjacent moves are invalid, pick a random move
+    do {
+      x = this.generateXAndY();
+      y = this.generateXAndY();
+    } while (!this.isValidMove(x, y, this.computerMoves));
+
+    return { x, y };
+  }
+
+  isValidMove(x, y, movesArray) {
+    if (x < 0 || x > 9 || y < 0 || y > 9) {
+      return false;
+    }
+    return !movesArray.some((move) => move.x === x && move.y === y);
+  }
+
+  renderGame() {
+    const main = document.querySelector("main");
+    main.innerHTML = "";
+
+    const gameContainer = document.createElement("div");
+    gameContainer.setAttribute("id", "gameContainer");
+
+    this.userBoard.className = "mainBoard";
+    this.computerBoard.className = "userBoard";
+
+    gameContainer.appendChild(this.userBoard);
+    gameContainer.appendChild(this.computerBoard);
+    main.appendChild(gameContainer);
+  }
+
+  drawBoard(player) {
+    const boardContainer = document.createElement("div");
+    boardContainer.classList.add("board-container");
+
+    const backEndBoard = player.gameboard.board;
+    const name = player.name;
+
+    for (let i = 0; i < 10; i++) {
+      const row = document.createElement("div");
+      row.classList.add("row");
+
+      for (let j = 0; j < 10; j++) {
+        const column = document.createElement("div");
+        column.classList.add("empty");
+        column.setAttribute("data-x", i);
+        column.setAttribute("data-y", j);
+        column.setAttribute("id", `cell-medium`);
+        if (name === "computer") {
+          column.className = "clickable";
+        }
+        if (name === "user" && backEndBoard[i][j]) {
+          column.className = "ship";
+        }
+
+        row.appendChild(column);
+      }
+      boardContainer.appendChild(row);
+    }
+    return boardContainer;
+  }
+
+  generateXAndY() {
+    return Math.floor(Math.random() * 10);
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/DomManipulation/SetupComputer.mjs":
+/*!***********************************************!*\
+  !*** ./src/DomManipulation/SetupComputer.mjs ***!
+  \***********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SetupComputer)
+/* harmony export */ });
+/* harmony import */ var _classes_Player_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/Player.mjs */ "./src/classes/Player.mjs");
+
+/**
+ * Responsible for setting up the computer player and gameboard.
+ */
+
+class SetupComputer {
+  constructor() {
+    this.computer = new _classes_Player_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]("computer");
+    this.gameboard = this.computer.gameboard;
+    this.ships = this.computer.ships;
+    this.currentShipIndex = 0;
+
+    this.placeNextShip();
+  }
+
+  placeNextShip() {
+    // loop through all of the ships
+    while (this.currentShipIndex < this.ships.length) {
+      // get the ship
+      let ship = this.ships[this.currentShipIndex];
+      let x, y, direction;
+
+      // Generate x, y, and direction until it's a valid position is found.
+      do {
+        x = this.generateXAndY();
+        y = this.generateXAndY();
+        direction = this.generateDirection();
+      } while (!this.gameboard.isValidPosition(ship, x, y, direction));
+
+      // once position is found, place the ship to the computer's gameboard.
+      this.gameboard.placeShip(ship, x, y, direction);
+      // increase current ship index.
+      this.currentShipIndex++;
+    }
+    console.log("All of the computer's ships have been placed. ");
+  }
+
+  /**
+   * Randomly generates a direction.
+   * @returns {string} - "horizontal" || "vertical"
+   */
+  generateDirection() {
+    return Math.random() < 0.5 ? "horizontal" : "vertical";
+  }
+
+  /**
+   * Used for generating a random x and y coordinate.
+   * @returns {number} between 0 and 9.
+   */
+  generateXAndY() {
+    return Math.floor(Math.random() * 10);
+  }
+}
+
+
+/***/ }),
+
+/***/ "./src/DomManipulation/SetupUser.mjs":
+/*!*******************************************!*\
+  !*** ./src/DomManipulation/SetupUser.mjs ***!
+  \*******************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SetupUser)
+/* harmony export */ });
+/* harmony import */ var _classes_Player_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/Player.mjs */ "./src/classes/Player.mjs");
+/* harmony import */ var _SetupComputer_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SetupComputer.mjs */ "./src/DomManipulation/SetupComputer.mjs");
+/* harmony import */ var _PlayGame_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlayGame.mjs */ "./src/DomManipulation/PlayGame.mjs");
 
 
 
 
 /**
- * This controls the DOM manipulation.
+ * Responsible for setting up the user players gameboard.
+ * The order of operations:
+ * 1. Start by rendering the button, board, and message on the screen
+ * 2. Add event handlers to everything.
  */
 
-class DOMController {
+class SetupUser {
   constructor() {
-    this.player = new _Player_mjs__WEBPACK_IMPORTED_MODULE_2__["default"]("Player"); // user player
-    this.playerGameboard = new _Gameboard_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]("Player");
+    this.initializeGame();
+    this.setupComputer = new _SetupComputer_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    this.user = new _classes_Player_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]("User");
+    this.gameboard = this.user.gameboard;
+    this.ships = this.user.ships;
     this.currentShipIndex = 0;
-    this.setupComputerPlayer = new _SetupComputerPlayer_mjs__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    this.currentShip = this.ships[this.currentShipIndex];
+    this.direction = "horizontal";
   }
+
+  initializeGame() {
+    this.renderPage();
+    this.setupAllHandlers();
+  }
+
   /**
-   * Renders first phase. Includes Place Your Ships message, toggle button and gameboard for setup.
+   * Places a ship on the user's gameboard and updates the board UI.
+   * This method also activates the next phase of the app once all ships have been assigned.
+   * @param {number} x
+   * @param {number} y
    */
-  renderShipPlacement() {
-    const main = document.querySelector("main");
-    main.innerHTML = ``; //  clear it out.
+  placeNextShip(x, y) {
+    // Check if we reached the end of the ships array (all ships placed)
+    if (this.currentShipIndex >= this.ships.length - 1) {
+      this.gameboard.placeShip(this.currentShip, x, y, this.direction);
+      console.log("All user ships have been placed. ");
+      // activate next phase playGame
+      //   console.log("User board");
+      //   console.log(this.user.gameboard.toString());
+      //   console.log("Computer Board");
+      //   console.log(this.setupComputer.gameboard.toString());
 
-    // direction toggle button
-    const toggleButton = document.createElement("button");
-    toggleButton.setAttribute("id", "direction");
-    toggleButton.innerHTML = "Horizontal";
-
-    // gameboard
-    const gameboard = this.drawBoard();
-
-    //message
-    const message = document.createElement("div");
-    message.classList.add("message");
-    message.innerHTML = "PLACE YOUR SHIPS";
-
-    main.appendChild(toggleButton);
-    main.appendChild(gameboard);
-    main.appendChild(message);
-
-    this.placeNextShip();
+      const startGame = new _PlayGame_mjs__WEBPACK_IMPORTED_MODULE_2__["default"](this.user, this.setupComputer.computer);
+    }
+    this.gameboard.placeShip(this.currentShip, x, y, this.direction);
+    // update board
+    //console.log(this.user.gameboard.toString());
+    this.updateBoard();
+    // increase curent index and reassign current ship
+    this.currentShipIndex++;
+    this.currentShip = this.ships[this.currentShipIndex];
   }
 
-  placeNextShip = () => {
-    const ships = this.player.ships;
-    // Once we reach the end up of the ships array (we placed all of the ships)
-    if (this.currentShipIndex >= ships.length) {
-      console.log("All ships have been placed.");
-      // Show loading screen and then set up computer player
-      this.setupComputerPlayer.renderLoadingPage();
-      setTimeout(() => {
-        this.setupComputerPlayer.startSetup(() => {
-          console.log("Computer player setup complete.");
-          // Transition to the next game phase here, e.g., renderGamePhase();
-        });
-      }, 2000); // Delay for 1 second to show the loading screen
-      return;
-    }
-
-    const ship = ships[this.currentShipIndex];
-    let direction = "horizontal";
-
-    // handle button
+  setupAllHandlers() {
+    // select direction toggle button
     const button = document.querySelector("#direction");
     button.addEventListener("click", () => {
-      direction = direction === "horizontal" ? "vertical" : "horizontal";
-      button.innerHTML = direction.charAt(0).toUpperCase() + direction.slice(1);
+      this.direction =
+        this.direction === "horizontal" ? "vertical" : "horizontal";
+      button.innerHTML =
+        this.direction.charAt(0).toUpperCase() + this.direction.slice(1);
     });
 
-    const handleMouseOver = (event) => {
-      let x = Number(event.target.dataset.x);
-      let y = Number(event.target.dataset.y);
-      this.highlightCells(x, y, direction, ship);
-    };
-
-    const handleMouseOut = (event) => {
-      this.unhighlightCells();
-    };
-
-    const handleClick = (event) => {
-      let x = Number(event.target.dataset.x);
-      let y = Number(event.target.dataset.y);
-      if (this.playerGameboard.isValidPosition(ship, x, y, direction)) {
-        this.playerGameboard.placeShip(ship, x, y, direction);
-        this.updateBoardShipPlacement(x, y, direction, ship);
-        //console.log("ship:", ship, `placed at [${x},${y}], ${direction}`);
-        //console.log(this.playerGameboard.toString());
-        this.currentShipIndex++;
-        this.placeNextShip();
-        // Remove event listeners
-        cells.forEach((cell) => {
-          cell.removeEventListener("mouseover", handleMouseOver);
-          cell.removeEventListener("mouseout", handleMouseOut);
-          cell.removeEventListener("click", handleClick);
-        });
-      }
-    };
-
+    // select all the cells
     let cells = document.querySelectorAll("#cell");
+    // add the event handlers for each cell. Hover and click
     cells.forEach((cell) => {
-      cell.addEventListener("mouseover", handleMouseOver);
-      cell.addEventListener("mouseout", handleMouseOut);
-      cell.addEventListener("click", handleClick);
+      cell.addEventListener("mouseover", this.handleMouseOver.bind(this));
+      cell.addEventListener("mouseout", this.handleMouseOut.bind(this));
+      cell.addEventListener("click", this.handleClick.bind(this));
     });
-  };
+  }
 
+  /**
+   * Draws the board, a 10x10 grid.
+   * @returns a DOM object to add to DOM
+   */
   drawBoard() {
     let boardContainer = document.createElement("div");
     boardContainer.classList.add("board-container");
@@ -739,30 +1136,63 @@ class DOMController {
     return boardContainer;
   }
 
-  updateBoardShipPlacement(x, y, direction, ship) {
-    // select cells where ship is at.
-    for (let i = 0; i < ship.size; i++) {
-      let cell;
-      if (direction === "horizontal") {
-        cell = document.querySelector(`[data-x="${x}"][data-y="${y + i}"]`);
-      } else {
-        cell = document.querySelector(`[data-x="${x + i}"][data-y="${y}"]`);
-      }
-      cell.className = "ship";
-    }
+  /**
+   * Renders the page UI.
+   */
+  renderPage() {
+    const main = document.querySelector("main");
+    main.innerHTML = ``; //  clear it out.
+
+    // direction toggle button
+    const toggleButton = document.createElement("button");
+    toggleButton.setAttribute("id", "direction");
+    toggleButton.innerHTML = "Horizontal";
+
+    // gameboard
+    const gameboard = this.drawBoard();
+
+    //message
+    const message = document.createElement("div");
+    message.classList.add("message");
+    message.innerHTML = "PLACE YOUR SHIPS";
+
+    main.appendChild(toggleButton);
+    main.appendChild(gameboard);
+    main.appendChild(message);
   }
 
-  highlightCells(x, y, direction, ship) {
-    for (let i = 0; i < ship.size; i++) {
+  /**
+   * Highlights the cells when you hover over the square according to the ship being placed. Will highlight red if it's an invalid spot.
+   * @param {number} x
+   * @param {number} y
+   * @param {String} direction
+   * @param {Object} ship
+   */
+  handleMouseOver(event) {
+    //check to make sure there is a ship
+    if (this.currentShipIndex >= this.ships.length) {
+      return;
+    }
+
+    let x = Number(event.target.dataset.x);
+    let y = Number(event.target.dataset.y);
+    for (let i = 0; i < this.currentShip.size; i++) {
       let cell;
-      if (direction === "horizontal") {
+      if (this.direction === "horizontal") {
         cell = document.querySelector(`[data-x="${x}"][data-y="${y + i}"]`);
       } else {
         cell = document.querySelector(`[data-x="${x + i}"][data-y="${y}"]`);
       }
       if (cell) {
         if (cell.className !== "ship") {
-          if (!this.playerGameboard.isValidPosition(ship, x, y, direction)) {
+          if (
+            !this.gameboard.isValidPosition(
+              this.currentShip,
+              x,
+              y,
+              this.direction
+            )
+          ) {
             cell.className = "empty"; //clears classlist
             cell.classList.add("invalid");
             ///cell.style.backgroundColor = "#f87171"; // red
@@ -775,30 +1205,67 @@ class DOMController {
       }
     }
   }
-  unhighlightCells() {
+
+  /**
+   * unhighlights cells that are empty when the mouse event moves away from cell.
+   */
+  handleMouseOut(event) {
     let cells = document.querySelectorAll(".empty");
     cells.forEach((cell) => {
       cell.className = "empty";
     });
   }
 
-  //end
+  /**
+   * Handles when a user clicks on a cell in the grid. Places a ship if it's a valid position.
+   * @param {event} event
+   * @returns
+   */
+  handleClick(event) {
+    //check to make sure there is a ship
+    if (this.currentShipIndex >= this.ships.length) {
+      return;
+    }
+    let x = Number(event.target.dataset.x);
+    let y = Number(event.target.dataset.y);
+
+    if (
+      this.gameboard.isValidPosition(this.currentShip, x, y, this.direction)
+    ) {
+      this.placeNextShip(x, y);
+    }
+  }
+
+  /**
+   * Syncs the backend board with the user's board.
+   */
+  updateBoard() {
+    for (let i = 0; i < this.gameboard.board.length; i++) {
+      for (let j = 0; j < this.gameboard.board[i].length; j++) {
+        if (this.gameboard.board[i][j] !== null) {
+          let cell = document.querySelector(`[data-x="${i}"][data-y="${j}"]`);
+          cell.className = "ship";
+        }
+      }
+    }
+  }
 }
 
 
 /***/ }),
 
-/***/ "./src/Gameboard.mjs":
-/*!***************************!*\
-  !*** ./src/Gameboard.mjs ***!
-  \***************************/
+/***/ "./src/classes/Gameboard.mjs":
+/*!***********************************!*\
+  !*** ./src/classes/Gameboard.mjs ***!
+  \***********************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Ship_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Ship.mjs */ "./src/Ship.mjs");
+/* harmony import */ var _Ship_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Ship.mjs */ "./src/classes/Ship.mjs");
+/* harmony import */ var _DomManipulation_Log_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DomManipulation/Log.mjs */ "./src/DomManipulation/Log.mjs");
 
 
 class Gameboard {
@@ -809,6 +1276,7 @@ class Gameboard {
       .map(() => Array(10).fill(null));
     this.ships = [];
     this.gameOver = false;
+    this.log = new _DomManipulation_Log_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]();
   }
 
   /**
@@ -870,26 +1338,33 @@ class Gameboard {
    */
   receiveAttack(x, y) {
     if (this.find(x, y) !== null) {
+      //check gameboard. If null then no ship exists.
       // Check if it's a hit or miss.
-      let hitShip = this.find(x, y);
-      console.log(
-        "Hit " + hitShip.name + " at coordinates (" + x + ", " + y + ")"
-      );
+      let hitShip = this.find(x, y); // get's ship hit.
+      //update the log
+      this.log.addMessage(`${this.name}'s ${hitShip.name} was hit!`);
+
       hitShip.hit();
       this.board[x][y] = "H"; // Add H for hit to board.
 
+      // check if all the enemy ships were sunk.
       if (this.allShipsSunk()) {
+        this.log.addMessage(`${this.name}'s ships have been sunk. Game Over.`);
         console.log(`All of ${this.name}'s ships have been sunk. Game Over.`);
+
         return true;
       }
 
       if (hitShip.isSunk()) {
         // Check if ship is sunk.
-        console.log("The " + hitShip.name + " has been sunk");
+        //console.log(`${this.name}'s ${hitShip.name} has sunk`);
+        this.log.addMessage(`${this.name}'s ${hitShip.name} has sunk!`);
       }
       return true;
     } else {
-      console.log("Miss");
+      //console.log(`${this.name} didn't get hit`);
+      this.log.addMessage(`${this.name}'s attack missed.`);
+
       this.board[x][y] = "M"; // fills the board with M for miss.
       return false;
     }
@@ -952,107 +1427,18 @@ class Gameboard {
 
 /***/ }),
 
-/***/ "./src/PlayGame.mjs":
-/*!**************************!*\
-  !*** ./src/PlayGame.mjs ***!
-  \**************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ PlayGame)
-/* harmony export */ });
-/* harmony import */ var _mockInstance_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mockInstance.mjs */ "./src/mockInstance.mjs");
-/**
- * We need to setup a mock instance to play this game.
- */
-
-class PlayGame {
-  constructor() {
-    this.fakeGame = new _mockInstance_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    this.user = this.fakeGame.player;
-    this.computer = this.fakeGame.computer;
-    this.mainBoard = this.drawBoard(this.user);
-    this.userBoard = this.drawBoard(this.computer);
-    this.renderGame();
-  }
-
-  // Now we need to handle game play.
-
-  handleGamePlay() {
-    const cells = document.querySelectorAll(".clickable");
-
-    // set up clicking event listeners. If the cell clicked contains a ship then add a Hit marker. If it doesn't add a Miss marker.
-  }
-
-  renderGame() {
-    const main = document.querySelector("main");
-    main.innerHTML = ""; // clear out main.
-
-    const gameContainer = document.createElement("div");
-    gameContainer.setAttribute("id", "gameContainer");
-
-    this.mainBoard.className = "mainBoard";
-
-    this.userBoard.className = "userBoard";
-    gameContainer.appendChild(this.mainBoard);
-    gameContainer.appendChild(this.userBoard);
-    main.appendChild(gameContainer);
-  }
-
-  drawBoard(player) {
-    let boardContainer = document.createElement("div");
-    boardContainer.classList.add("board-container");
-
-    let backEndBoard = player.gameboard.board;
-    console.log(backEndBoard);
-    let name = player.name;
-
-    // first loop creates the rows.
-    for (let i = 0; i < 10; i++) {
-      let row = document.createElement("div");
-      row.classList.add("row");
-
-      // columns
-      for (let j = 0; j < 10; j++) {
-        let column = document.createElement("div");
-        column.classList.add("empty");
-        column.setAttribute("data-x", i);
-        column.setAttribute("data-y", j);
-        column.setAttribute("id", `cell-medium`);
-        if (name === "computer") {
-          column.className = "clickable";
-        }
-        if (name === "user") {
-          //check if theres a ship in each cell.
-          if (backEndBoard[i][j]) {
-            column.className = "ship";
-          }
-        }
-
-        row.appendChild(column);
-      }
-      boardContainer.appendChild(row);
-    }
-    return boardContainer;
-  }
-}
-
-
-/***/ }),
-
-/***/ "./src/Player.mjs":
-/*!************************!*\
-  !*** ./src/Player.mjs ***!
-  \************************/
+/***/ "./src/classes/Player.mjs":
+/*!********************************!*\
+  !*** ./src/classes/Player.mjs ***!
+  \********************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Player)
 /* harmony export */ });
-/* harmony import */ var _Gameboard_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Gameboard.mjs */ "./src/Gameboard.mjs");
-/* harmony import */ var _Ship_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Ship.mjs */ "./src/Ship.mjs");
+/* harmony import */ var _Gameboard_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Gameboard.mjs */ "./src/classes/Gameboard.mjs");
+/* harmony import */ var _Ship_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Ship.mjs */ "./src/classes/Ship.mjs");
 
 
 
@@ -1073,88 +1459,10 @@ class Player {
 
 /***/ }),
 
-/***/ "./src/SetupComputerPlayer.mjs":
-/*!*************************************!*\
-  !*** ./src/SetupComputerPlayer.mjs ***!
-  \*************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ SetupComputerPlayer)
-/* harmony export */ });
-/* harmony import */ var _Gameboard_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Gameboard.mjs */ "./src/Gameboard.mjs");
-/* harmony import */ var _Player_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Player.mjs */ "./src/Player.mjs");
-
-
-/**
- * Renders a loading screen and setsup computer players board.
- */
-
-class SetupComputerPlayer {
-  constructor() {
-    this.computerGameboard = new _Gameboard_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]("Computer");
-    this.computer = new _Player_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]("Computer");
-    this.currentShipIndex = 0;
-    this.placeNextShip();
-  }
-
-  renderLoadingPage() {
-    const main = document.querySelector("main");
-    main.innerHTML = "";
-
-    const load = document.createElement("div");
-    load.className = "load";
-    load.innerHTML = "Setting up Computer Player...";
-
-    main.appendChild(load);
-  }
-
-  // Randomly place the computers ships.
-  placeNextShip() {
-    const ships = this.computer.ships;
-    if (this.currentShipIndex >= ships.length) {
-      console.log("All computer player ships have been placed. ");
-      return;
-    }
-    let ship = ships[this.currentShipIndex];
-    let x = this.generateXAndY();
-    let y = this.generateXAndY();
-    let direction = this.generateDirection();
-    if (this.computerGameboard.isValidPosition(ship, x, y, direction)) {
-      this.computerGameboard.placeShip(ship, x, y, direction);
-      this.currentShipIndex++;
-      this.placeNextShip();
-    } else {
-      x = this.generateXAndY();
-      y = this.generateXAndY();
-      direction = this.generateDirection();
-    }
-  }
-  /**
-   * Randomly generates a direction.
-   * @returns {string} - "horizontal" || "vertical"
-   */
-  generateDirection() {
-    return Math.random() < 0.5 ? "horizontal" : "vertical";
-  }
-
-  /**
-   * Used for generating a random x and y coordinate.
-   * @returns {number} between 0 and 9.
-   */
-  generateXAndY() {
-    return Math.floor(Math.random() * 10);
-  }
-}
-
-
-/***/ }),
-
-/***/ "./src/Ship.mjs":
-/*!**********************!*\
-  !*** ./src/Ship.mjs ***!
-  \**********************/
+/***/ "./src/classes/Ship.mjs":
+/*!******************************!*\
+  !*** ./src/classes/Ship.mjs ***!
+  \******************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -1187,57 +1495,6 @@ class Ship {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ship);
-
-
-/***/ }),
-
-/***/ "./src/mockInstance.mjs":
-/*!******************************!*\
-  !*** ./src/mockInstance.mjs ***!
-  \******************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ FakeGame)
-/* harmony export */ });
-/* harmony import */ var _Player_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Player.mjs */ "./src/Player.mjs");
-
-
-class FakeGame {
-  constructor() {
-    this.computer = new _Player_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]("computer");
-    this.player = new _Player_mjs__WEBPACK_IMPORTED_MODULE_0__["default"]("user");
-    this.placeShips(this.computer.name);
-    this.placeShips(this.player.name);
-  }
-
-  placeShips(name) {
-    if (name === "computer") {
-      for (let i = 0; i < this.computer.ships.length; i++) {
-        this.computer.gameboard.placeShip(
-          this.computer.ships[i],
-          i,
-          0,
-          "horizontal"
-        );
-      }
-      console.log("Computer Gameboard");
-      console.log(this.computer.gameboard.toString());
-    } else {
-      for (let i = 0; i < this.player.ships.length; i++) {
-        this.player.gameboard.placeShip(
-          this.computer.ships[i],
-          i,
-          0,
-          "horizontal"
-        );
-      }
-      console.log("Player gameboard. ");
-      console.log(this.player.gameboard.toString());
-    }
-  }
-}
 
 
 /***/ })
@@ -1323,32 +1580,16 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.css */ "./src/styles/style.css");
-/* harmony import */ var _DOMController_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DOMController.mjs */ "./src/DOMController.mjs");
-/* harmony import */ var _mockInstance_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mockInstance.mjs */ "./src/mockInstance.mjs");
-/* harmony import */ var _PlayGame_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PlayGame.mjs */ "./src/PlayGame.mjs");
-
+/* harmony import */ var _DomManipulation_SetupUser_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DomManipulation/SetupUser.mjs */ "./src/DomManipulation/SetupUser.mjs");
 
 
 
 /**
- * This is the main controller for the game.
+ * The game will start with the initialization of User setup. The page will render and the user will be able to place ships. After the user has placed all of the ships a new overlay will appear asking the use
+ *
  */
 
-// The game starts with placin of the ships. The user will see a grid and a toggle button to change between vertical and horizontal. As the user moves the cursor over the
-
-const GAME_PHASES = {
-  SETUP: "setup",
-  LOADING: "loading",
-  GAMEPLAY: "gameplay",
-  ENDGAME: "endgame"
-};
-const ui = new _DOMController_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]();
-// Render the first page.
-
-const playGame = new _PlayGame_mjs__WEBPACK_IMPORTED_MODULE_3__["default"](ui);
-
-//ui.renderShipPlacement();
-//const fakeGame = new FakeGame();
+const initialize = new _DomManipulation_SetupUser_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]();
 })();
 
 /******/ })()

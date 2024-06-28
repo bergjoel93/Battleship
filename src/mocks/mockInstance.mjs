@@ -1,4 +1,4 @@
-import Player from "./Player.mjs";
+import Player from "../classes/Player.mjs";
 
 export default class FakeGame {
   constructor() {

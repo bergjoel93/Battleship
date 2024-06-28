@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lalezar&family=Press+Start+2P&display=swap");
 :root {
   --buttonColor: #0f172a;
   --cellSizeLarge: 40px;
@@ -146,6 +146,7 @@ main {
 }
 .mainBoard,
 .userBoard {
+  background-color: #082f49;
 }
 
 #hit-marker {
@@ -162,4 +163,31 @@ main {
   color: white;
   text-align: center;
   margin-top: 20px;
+}
+
+/* Events log */
+#log-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 24px;
+}
+
+#log {
+  background-color: black;
+  color: rgb(11, 237, 22);
+  width: 80%;
+  height: 150px;
+  border: ridge gray 4px;
+  padding: 8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+#log * {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  font-weight: 100;
 }

@@ -1,5 +1,5 @@
-import Gameboard from "./Gameboard.mjs";
-import Ship from "./Ship.mjs";
+import Gameboard from "../Gameboard.mjs";
+import Ship from "../classes/Ship.mjs";
 
 const gameboard = new Gameboard("Player");
 const carrier = new Ship("Carrier", 5);

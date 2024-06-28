@@ -1,7 +1,4 @@
-/**
- * We need to setup a mock instance to play this game.
- */
-import FakeGame from "./mockInstance.mjs";
+import Log from "./Log.mjs";
 export default class PlayGame {
   constructor(player1, player2) {
     //this.fakeGame = new FakeGame();
@@ -9,13 +6,15 @@ export default class PlayGame {
     //this.computer = this.fakeGame.computer;
     this.user = player1;
     this.computer = player2;
-    this.mainBoard = this.drawBoard(this.user);
-    this.userBoard = this.drawBoard(this.computer);
+    this.userBoard = this.drawBoard(this.user);
+    this.computerBoard = this.drawBoard(this.computer);
     this.usersMoves = []; // keeps track of user's moves.
     this.computerMoves = [];
     this.successfulHit = null;
     this.renderGame();
     this.handleGamePlay();
+    this.log = new Log();
+    this.log.render();
   }
 
   /**
@@ -198,11 +197,11 @@ export default class PlayGame {
     const gameContainer = document.createElement("div");
     gameContainer.setAttribute("id", "gameContainer");
 
-    this.mainBoard.className = "mainBoard";
-    this.userBoard.className = "userBoard";
+    this.userBoard.className = "mainBoard";
+    this.computerBoard.className = "userBoard";
 
-    gameContainer.appendChild(this.mainBoard);
     gameContainer.appendChild(this.userBoard);
+    gameContainer.appendChild(this.computerBoard);
     main.appendChild(gameContainer);
   }
 

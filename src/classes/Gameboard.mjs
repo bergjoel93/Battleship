@@ -1,5 +1,5 @@
 import Ship from "./Ship.mjs";
-
+import Log from "../DomManipulation/Log.mjs";
 class Gameboard {
   constructor(name) {
     this.name = name;
@@ -8,6 +8,7 @@ class Gameboard {
       .map(() => Array(10).fill(null));
     this.ships = [];
     this.gameOver = false;
+    this.log = new Log();
   }
 
   /**
@@ -72,32 +73,30 @@ class Gameboard {
       //check gameboard. If null then no ship exists.
       // Check if it's a hit or miss.
       let hitShip = this.find(x, y); // get's ship hit.
-      console.log(
-        this.name +
-          "'s " +
-          hitShip.name +
-          " hit at coordinates (" +
-          x +
-          ", " +
-          y +
-          ")"
-      );
+      //update the log
+      this.log.addMessage(`${this.name}'s ${hitShip.name} was hit!`);
+
       hitShip.hit();
       this.board[x][y] = "H"; // Add H for hit to board.
 
       // check if all the enemy ships were sunk.
       if (this.allShipsSunk()) {
+        this.log.addMessage(`${this.name}'s ships have been sunk. Game Over.`);
         console.log(`All of ${this.name}'s ships have been sunk. Game Over.`);
+
         return true;
       }
 
       if (hitShip.isSunk()) {
         // Check if ship is sunk.
-        console.log(`${this.name}'s ${hitShip.name} has sunk`);
+        //console.log(`${this.name}'s ${hitShip.name} has sunk`);
+        this.log.addMessage(`${this.name}'s ${hitShip.name} has sunk!`);
       }
       return true;
     } else {
-      console.log(`${this.name} didn't get hit`);
+      //console.log(`${this.name} didn't get hit`);
+      this.log.addMessage(`${this.name}'s attack missed.`);
+
       this.board[x][y] = "M"; // fills the board with M for miss.
       return false;
     }
